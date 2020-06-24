@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  height: 100%;
+  /* background-image: url("assets/bg.png"); */
+  /* background-image: url("assets/bg3.png"); */
+  background-image: url("assets/wallpaper.png");
+  background-color: black;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+.active {
+  color: red;
+}

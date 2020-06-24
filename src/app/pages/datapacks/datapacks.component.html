@@ -1,0 +1,20 @@
+<div class="container p-3">
+  <div class="row mb-5">
+    <div class="col">
+      <h2>
+        Download all this packs from Xisumavoid's <a href="https://vanillatweaks.net" target="_blank">Vanilla
+          Tweaks</a>.
+      </h2>
+    </div>
+  </div>
+  <div class="row row-cols-5">
+    <div class="col pb-3" *ngFor="let item of data">
+      <div class="card text-center">
+        <img src="assets/{{item}}.png" class="card-img-top p-3">
+        <div class="card-body">
+          <p class="card-text">{{item | filename}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

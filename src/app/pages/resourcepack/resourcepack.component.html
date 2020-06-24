@@ -1,0 +1,23 @@
+<div class="container p-3">
+  <div class="row mb-5">
+    <div class="col">
+      <h2>
+        Download all this packs from Xisumavoid's <a href="https://vanillatweaks.net" target="_blank">Vanilla
+          Tweaks</a>.
+      </h2><br>
+      <h5>
+        Download this specific pack <a href="http://25.3.0.72:3000/rsspack">here</a>.
+      </h5>
+    </div>
+  </div>
+  <div class="row row-cols-5">
+    <div class="col pb-3" *ngFor="let item of data">
+      <div class="card text-center">
+        <img src="assets/{{item}}.png" class="card-img-top p-3">
+        <div class="card-body">
+          <p class="card-text">{{item}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
