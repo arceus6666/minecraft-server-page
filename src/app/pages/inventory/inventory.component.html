@@ -1,0 +1,194 @@
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-3">
+    Showing&nbsp;<div class="btn-group">
+      <button class="btn btn-sm dropdown-toggle border border-dark rounded" style="background-color: transparent;"
+        type="button" data-toggle="dropdown">
+        {{ pagination.size }}
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" *ngFor="let size of sizes" (click)="changeSize(size)">{{ size }}</a>
+      </div>
+    </div>&nbsp;of {{ quantity }} elements.
+  </div>
+  <div class="col-4"></div>
+  <div class="col-1 search-tag text-center rounded-left p-1">
+    Search
+  </div>
+  <div class="col-2 search-box border border-dark rounded-right">
+    <input type="text" [(ngModel)]="searchText" class="form-control bg-transparent border-0 ar"
+      (ngModelChange)='search($event)' placeholder="&#xF002;" style="font-family:Arial, FontAwesome">
+  </div>
+  <div class="col-1"></div>
+</div><br>
+
+<!-- <table class="table table-hover align-middle shadow rounded" style="background-color: rgba(255,255,255,0.2);">
+  <thead class="thead-dark">
+    <tr>
+      <th class="option" scope="col" (click)="sortByPosition()" style="cursor: pointer;">Position&nbsp;<i class="fas"
+          [ngClass]="{'fa-sort': sort.position == 0, 'fa-sort-up': sort.position < 0, 'fa-sort-down': sort.position > 0}"></i>
+      </th>
+      <th scope="col" (click)="sortByName()" style="cursor: pointer; width: 50%;">Name&nbsp;<i class="fas"
+          [ngClass]="{'fa-sort': sort.name == 0, 'fa-sort-up': sort.name < 0, 'fa-sort-down': sort.name > 0}"></i></th>
+      <th scope="col">Created At</th>
+      <th scope="col" colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of showdata[pagination.page]; let i = index;">
+      <th class="option" scope="row">{{item.position}}</th>
+      <td>{{item.name}}</td>
+      <td>{{ item.created_at | date : 'd - MMMM - yyyy' }}</td>
+      <td class="option" style="border-left: 1px rgb(145, 145, 145) dotted;">
+        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal"
+          (click)="changeEditing(item.position)">
+          <i class="fas fa-edit"></i>
+        </button>
+      </td>
+      <td class="option">
+        <button type="button" class="btn btn-outline-danger" (click)="deleteItem(item.position);">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+<div class="container shadow-lg rounded mb-3" style="border: 1px black solid;">
+  <div class="row thead text-center">
+    <div class="col-md-2 py-3 ch" (click)="sortByPosition()" style="cursor: pointer;">
+      Position&nbsp;<i class="fas"
+        [ngClass]="{'fa-sort': sort.position == 0, 'fa-sort-up': sort.position < 0, 'fa-sort-down': sort.position > 0}"></i>
+    </div>
+    <div class="col-md-5 py-3 ch" (click)="sortByName()" style="cursor: pointer; width: 50%;">
+      Name&nbsp;<i class="fas"
+        [ngClass]="{'fa-sort': sort.name == 0, 'fa-sort-up': sort.name < 0, 'fa-sort-down': sort.name > 0}"></i>
+    </div>
+    <div class="col-md-3 py-3 ch" (click)="sortByDate()" style="cursor: pointer; width: 50%;">Created At&nbsp;<i
+        class="fas"
+        [ngClass]="{'fa-sort': sort.date == 0, 'fa-sort-up': sort.date < 0, 'fa-sort-down': sort.date > 0}"></i></div>
+    <div class="col-md-2 py-3"></div>
+  </div>
+
+  <div class="row tbody py-2 font-weight-bold" *ngFor="let item of showdata[pagination.page]; let i = index;">
+    <div class="col-md-2 text-center pt-2">{{ item.position }}</div>
+    <div class="col-md-5 pt-2 pl-5">{{ item.name }}</div>
+    <div class="col-md-3 text-center pt-2">{{ item.created_at | date : 'd - MMMM - yyyy' }}</div>
+    <div class="col-md-1">
+      <span data-toggle="modal" data-target="#editModal">
+        <button type="button" class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Edit"
+          (click)="changeEditing(item.position)">
+          <i class="fas fa-edit"></i>
+        </button>
+      </span>
+    </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-outline-danger" (click)="deleteItem(item.position);" data-toggle="tooltip"
+        data-placement="top" title="Delete">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [ngClass]="{'disabled': pagination.page === 0}">
+      <a class="page-link" tabindex="-1" (click)="changePage(false)">
+        <span aria-hidden="true"><i class="fas fa-angle-double-left"></i></span>
+      </a>
+    </li>
+
+    <!-- <li class="page-item" *ngFor="let page of showdata; let i = index;" [ngClass]="{'active': pagination.page === i}">
+      <a class="page-link" (click)="changePage(i)">
+        {{i+1}} <span class="sr-only" *ngIf="pagination.page === i">(current)</span>
+      </a>
+    </li> -->
+    <li class="page-item">
+      <a class="page-link">
+        {{ pagination.page + 1 }} of {{ showdata.length }}
+      </a>
+    </li>
+
+    <li class="page-item" [ngClass]="{'disabled': pagination.page >= showdata.length - 1}">
+      <a class="page-link" (click)="changePage(true)">
+        <span aria-hidden="true"><i class="fas fa-angle-double-right"></i></span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- <button (click)="sortName()">sort 1</button> -->
+<!-- <button (click)="print()">print</button> -->
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" data-backdrop="static" tabindex="-1" role="dialog" *ngIf="editing">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalTitle">Editing {{ editing.name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="itemForm">
+          <div class="form-group">
+            <label for="position">Position</label>
+            <input type="number" class="form-control" id="position" formControlName="position">
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeEditing(-1)">Cancel</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="editItem()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <button class="btn" (click)="myAlert()">Toast</button> -->
+
+<!-- <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+  <div class="toast" id="myToast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded mr-2" alt="...">
+      <strong class="mr-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div> -->
+<div class="alert alert-info alert-dismissible fade show" role="alert" [hidden]="hiddenAlert">
+  <i class="fas fa-info-circle"></i>&nbsp;New item added to the list.
+  <button type="button" class="close" (click)="myAlert(false)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!-- Delete Modal -->
+<!-- <div class="modal fade" id="deleteModal" data-backdrop="static" tabindex="-1" role="dialog" *ngIf="editing">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalTitle">Delete {{ editing.name }}?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="changeEditing(-1)">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteItem(0)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div> -->

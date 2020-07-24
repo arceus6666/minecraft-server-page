@@ -1,0 +1,69 @@
+<div class="container">
+
+  <div class="row mb-2">
+    <div class="col-3"></div>
+    <div class="col-2 search-tag text-center rounded-left p-1">
+      Player Name
+    </div>
+    <div class="col-3 search-box border-top border-bottom border-dark">
+      <input type="text" [(ngModel)]="name" class="form-control bg-transparent border-0 ar" placeholder="&#xF002;"
+        style="font-family:Arial, FontAwesome">
+    </div>
+    <div class="col-1 search-box border rounded-right border-dark p-1 text-center tbtn" style="cursor: pointer;"
+      (click)="getUuid()">Search</div>
+    <div class="col-3"></div>
+  </div>
+
+  <div *ngIf="uuid">
+    <div class="row pb-5">
+      <div class="col-3"></div>
+      <div class="col-1 search-tag text-center rounded-left p-1">
+        UUID
+      </div>
+      <div class="col-4 search-box border-top border-bottom border-dark">
+        <input type="text" [(ngModel)]="uuid" class="form-control bg-transparent border-0 text-center font-weight-bold"
+          disabled>
+      </div>
+      <div class="col-1 search-box border rounded-right border-dark p-1 text-center tbtn" style="cursor: pointer;"
+        (click)="copy()">Copy</div>
+      <div class="col-3"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <div class="card border-dark bg">
+          <div class="card-body text-dark">
+            <h5 class="card-title text-center">Avatar</h5>
+          </div>
+          <img src="https://crafatar.com/avatars/{{uuid}}" class="card-img-top mb-3">
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card border-dark bg">
+          <div class="card-body text-dark">
+            <h5 class="card-title text-center">Head Renders</h5>
+          </div>
+          <img src="https://crafatar.com/renders/head/{{uuid}}" class="card-img-top mb-3">
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card border-dark bg">
+          <div class="card-body text-dark">
+            <h5 class="card-title text-center">Body Renders</h5>
+          </div>
+          <img src="https://crafatar.com/renders/body/{{uuid}}" class="card-img-top mb-3">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="alert alert-info alert-dismissible fade show mt-5" role="alert" [hidden]="hiddenAlert"
+  style="width: 30%; margin-left: 35%;">
+  <i class="fas fa-info-circle"></i>&nbsp;Copied to clipboard.
+  <button type="button" class="close" (click)="myAlert(false)">
+    <span>&times;</span>
+  </button>
+</div>

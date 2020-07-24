@@ -1,18 +1,17 @@
 <div class="container p-3">
   <div class="row mb-5">
     <div class="col">
-      <h2>
-        My skins
-      </h2>
+      <h2>Skins</h2>
     </div>
   </div>
   <div class="row row-cols-3">
-    <div class="col pb-3" *ngFor="let item of data">
+    <div class="col pb-3" *ngFor="let file of apidata">
       <div class="card text-center">
-        <img src="assets/{{item.file}}.png" class="card-img-top p-3">
+        <img src="{{imageurl}}/chars/{{file.filename}}.png" class="card-img-top p-3">
         <div class="card-body">
-          <p class="card-text">{{item.name}}</p>
-          <p class="card-text"><a href="http://25.3.0.72:3000/skins/{{item.file}}" class="btn btn-outline-success">Download</a></p>
+          <h5 class="card-title">{{file.name}}</h5>
+          <p class="card-text"><a href="{{downloadurl}}/images/skins/{{file.filename}}"
+              class="btn btn-outline-info">Download</a></p>
         </div>
       </div>
     </div>

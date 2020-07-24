@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_URL: 'http://localhost:4114/api',
+  UUID_URL: 'http://localhost:4114/uuid',
+  FILES_URL: 'http://localhost:4114/files',
+  IMAGES_URL: 'http://localhost:4114/images',
+  DOWNLOADS_URL: 'http://localhost:4114/downloads'
 };
 
 /*

@@ -1,18 +1,38 @@
 <div class="container p-3">
   <div class="row mb-5">
     <div class="col">
-      <h2>
-        Download all this packs from Xisumavoid's <a href="https://vanillatweaks.net" target="_blank">Vanilla
-          Tweaks</a>.
-      </h2>
+      <h2>Download more packs and tweaks from <a href="https://vanillatweaks.net" target="_blank">Vanilla
+          Tweaks</a>.</h2>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <h2>Datapacks</h2>
     </div>
   </div>
   <div class="row row-cols-5">
-    <div class="col pb-3" *ngFor="let item of data">
+    <div class="col pb-3" *ngFor="let item of packs">
       <div class="card text-center">
-        <img src="assets/{{item}}.png" class="card-img-top p-3">
+        <img src="{{imageurl}}/datapacks/{{item.filename}}.png" class="card-img-top p-3">
         <div class="card-body">
-          <p class="card-text">{{item | filename}}</p>
+          <h5 class="card-title">{{item.name}}</h5>
+          <p class="card-text"><a href="{{downloadurl}}/packs/{{item.filename}}"
+              class="btn btn-outline-info">Download</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <h2>Crafting Tweaks <small class="btn btn-info">Download</small></h2>
+    </div>
+  </div>
+  <div class="row row-cols-5">
+    <div class="col pb-3" *ngFor="let item of tweaks">
+      <div class="card text-center">
+        <img src="{{imageurl}}/tweaks/{{item.filename}}.png" class="card-img-top p-3">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
         </div>
       </div>
     </div>

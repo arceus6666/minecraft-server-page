@@ -1,0 +1,53 @@
+td.option {
+  width: 5%;
+  /* border-left: 1px rgb(145, 145, 145) solid; */
+  text-align: center;
+}
+
+th.option {
+  width: 10%;
+  text-align: center;
+}
+
+.thead {
+  background-color: rgb(51, 51, 51);
+  color: white;
+  font-size: large;
+}
+
+.ch:hover {
+  background-color: rgb(80, 80, 80);
+}
+
+.tbody {
+  background-color: rgba(250, 250, 250, 0.3);
+  font-size: large;
+  border-top: 1px solid rgb(51, 51, 51);
+}
+
+.row.tbody:hover {
+  background-color: rgba(250, 250, 250, 0.7);
+}
+
+.search-tag {
+  background-color: rgb(51, 51, 51);
+  color: white;
+  font-size: large;
+}
+
+.search-box {
+  background-color: rgba(250, 250, 250, 0.3);
+  font-size: large;
+  /* border-top: 1px solid rgb(51, 51, 51); */
+}
+
+input.empty {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
+
+.ar::placeholder {
+  text-align: right;
+}

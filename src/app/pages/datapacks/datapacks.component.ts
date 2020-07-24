@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { IFile } from 'src/app/models/file.interface';
+import { FilesService } from 'src/app/services/files.service';
+import { ApiResponse } from 'src/app/models/api.interface';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-datapacks',
@@ -7,23 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatapacksComponent implements OnInit {
 
-  data = [
-    'anti_enderman_grief',
-    'anti_ghast_grief',
-    'armour_statues',
-    'double_shulker_shells',
-    'gem_villagers',
-    'more_mob_heads',
-    'multiplayer_sleep',
-    'player_graves',
-    'player_head_drops',
-    'track_raw_statistics',
-    'treasure_gems'
-  ];
+  public downloadurl = environment.DOWNLOADS_URL;
+  public imageurl = environment.IMAGES_URL;
 
-  constructor() { }
+  public packs: Array<IFile>;
+  public tweaks: Array<IFile>;
+
+  constructor(
+    private service: FilesService
+  ) { }
 
   ngOnInit(): void {
+    this.service.getTypes('datapacks').subscribe((data: ApiResponse) => {
+      const files: Array<IFile> = data.data as Array<IFile>;
+      this.packs = files;
+    });
+    this.service.getTypes('tweaks').subscribe((data: ApiResponse) => {
+      const files: Array<IFile> = data.data as Array<IFile>;
+      this.tweaks = files;
+    });
   }
 
 }
